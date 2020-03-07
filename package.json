@@ -4,9 +4,9 @@
   "description": "A base project for creating web applications",
   "main": "src/app.ts",
   "scripts": {
-    "start": "node -r ts-node/register  src/app",
-    "start-inspect": "node --inspect=0.0.0.0:9229 -r ts-node/register ./src/app.ts",
-    "author": "Sofen Hoque Anonta"
+    "start": "node dist/app.js",
+    "prestart": "npm run build",
+    "build": "tsc"
   },
   "license": "MIT",
   "dependencies": {
