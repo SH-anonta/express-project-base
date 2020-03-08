@@ -4,9 +4,10 @@ dotEnv.config();
 
 import path from 'path';
 process.env.NODE_CONFIG_DIR = path.join(__dirname, './config');
-const config = require('config').default;
+// const config = require('config').default;
+import config from 'config';
 
-const webAppConfig = config.webApp;
+const webAppConfig = (config as any).webApp;
 const app = express();
 
 app.get('/', (req: any, res: any) => {
