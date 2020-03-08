@@ -14,5 +14,5 @@ app.get('/', (req: any, res: any) => {
 });
 
 app.listen(webAppConfig.port, () => {
-  console.log(`App listening on port ${webAppConfig.port}!`)
+  console.log(`App listening on port ${webAppConfig.port}.`)
 });
