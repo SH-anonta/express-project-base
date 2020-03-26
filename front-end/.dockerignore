@@ -1,0 +1,12 @@
+# Node specific
+node_modules/
+
+# IDE dirs
+.idea/
+.vscode/
+
+# Logs
+logs/
+
+# artifacts
+dist/

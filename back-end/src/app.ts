@@ -8,14 +8,22 @@ import dotEnv from 'dotenv';
 dotEnv.config();
 process.env.NODE_CONFIG_DIR = path.join(__dirname, './config');
 
-import express from 'express';
 import config from 'config';
+import express from 'express';
+import cors from 'cors';
 
 const webAppConfig = (config as any).webApp;
 const app = express();
+app.use(cors());
 
 app.get('/', (req: any, res: any) => {
   res.send(`Hello world`);
+});
+
+app.get('/names', (req: any, res: any) => {
+  const names = ['A', 'B', 'C'];
+
+  res.send(names);
 });
 
 app.listen(webAppConfig.port, '0.0.0.0', () => {

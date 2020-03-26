@@ -1,10 +1,21 @@
 version: "3.7"
 services:
   webappbackend:
-    build: .
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
     ports:
       - '3000:3000'
       - '9229:9229'
     volumes:
       - /home/app/node_modules
-      - .:/home/app
+      - ./back-end:/home/app
+  webappfrontend:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    ports:
+      - '4200:4200'
+    volumes:
+      - /home/app/node_modules
+      - ./front-end:/home/app
