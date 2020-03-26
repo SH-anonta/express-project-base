@@ -14,6 +14,6 @@ export class HomePageComponent implements OnInit {
   }
 
   doStuffClick() {
-    this.toastr.success('EEEEEEEEEEEEEEE');
+    this.toastr.success(`I'm doing stuff`);
   }
 }
