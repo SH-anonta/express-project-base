@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-home-page',
@@ -8,12 +9,17 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   doStuffClick() {
     this.toastr.success(`I'm doing stuff`);
+    this.httpClient
+      .get('http://localhost:3000/names')
+      .subscribe(resp => {
+        console.log(resp);
+      });
   }
 }

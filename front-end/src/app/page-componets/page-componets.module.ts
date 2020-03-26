@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import {MatButtonModule} from '@angular/material/button';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -14,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     MatButtonModule,
+    HttpClientModule,
   ],
   exports: [
     HomePageComponent,

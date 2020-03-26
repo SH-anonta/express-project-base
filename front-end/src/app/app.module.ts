@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {PageComponetsModule} from './page-componets/page-componets.module';
 import {LayoutComponentsModule} from './layout-components/layout-components.module';
 import {ToastrModule} from 'ngx-toastr';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {ToastrModule} from 'ngx-toastr';
       closeButton: false,
       positionClass: 'toast-top-right'
     }),
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent]
