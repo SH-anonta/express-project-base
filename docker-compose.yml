@@ -1,12 +1,25 @@
 version: "3.7"
+
+volumes:
+  pgdata:
+
 services:
+  maindb:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123
+    ports:
+      - 5433:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
   webappbackend:
     build:
       context: ./back-end
       dockerfile: Dockerfile
     ports:
-      - '3000:3000'
-      - '9229:9229'
+      - 3000:3000
+      - 9229:9229
     volumes:
       - /home/app/node_modules
       - ./back-end:/home/app
@@ -15,7 +28,7 @@ services:
       context: ./front-end
       dockerfile: Dockerfile
     ports:
-      - '4200:4200'
+      - 4200:4200
     volumes:
       - /home/app/node_modules
       - ./front-end:/home/app
