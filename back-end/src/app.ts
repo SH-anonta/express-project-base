@@ -1,6 +1,8 @@
 // enables debugging ts files
-// tslint:disable-next-line:no-var-requires
-require('source-map-support').install();
+// required for debugging typescripts
+import 'source-map-support/register';
+// required for type-orm
+import 'reflect-metadata';
 
 import path from 'path';
 import dotEnv from 'dotenv';
