@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  webappbackend:
+    build: .
+    ports:
+      - '3000:3000'
+      - '9229:9229'
+    volumes:
+      - /home/app/node_modules
+      - .:/home/app

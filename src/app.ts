@@ -1,4 +1,6 @@
-import 'source-map-support/register';
+// enables debugging ts files
+// tslint:disable-next-line:no-var-requires
+require('source-map-support').install();
 
 import path from 'path';
 import dotEnv from 'dotenv';
@@ -13,10 +15,9 @@ const webAppConfig = (config as any).webApp;
 const app = express();
 
 app.get('/', (req: any, res: any) => {
-  console.log('ABC');
-  res.send('Za Warudo');
+  res.send(`Hello world`);
 });
 
-app.listen(webAppConfig.port, () => {
+app.listen(webAppConfig.port, '0.0.0.0', () => {
   console.log(`App listening on port ${webAppConfig.port}.`);
 });
