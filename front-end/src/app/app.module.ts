@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {PageComponetsModule} from './page-componets/page-componets.module';
+import {LayoutComponentsModule} from './layout-components/layout-components.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +14,9 @@ import {PageComponetsModule} from './page-componets/page-componets.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     PageComponetsModule,
+    LayoutComponentsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
