@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution":"node",
     "outDir": "./dist",
@@ -14,8 +14,10 @@
     "sourceRoot": "./src",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "lib": [
-      "ES6"
+      "es5",
+      "es6"
     ]
   },
   "include": [

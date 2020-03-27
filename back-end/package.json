@@ -7,11 +7,13 @@
   "scripts": {
     "start": "node --inspect=0.0.0.0:9229 dist/app.js",
     "start-watch": "nodemon --exec node --inspect=0.0.0.0:9229 -r ts-node/register ./src/app.ts",
+    "start-watch-temp": "nodemon --exec node --inspect=0.0.0.0:9229 -r ts-node/register ./src/temp.ts",
     "build": "tsc"
   },
   "nodemonConfig": {
     "ignore": [
-      "./logs/"
+      "./logs/",
+      "./node_modules/"
     ]
   },
   "dependencies": {
