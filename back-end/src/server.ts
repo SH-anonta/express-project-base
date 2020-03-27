@@ -3,8 +3,10 @@ import cors from 'cors';
 import {getDbConnection} from './db-connection-provider';
 import {Connection} from 'typeorm';
 import {User} from './entity/user';
-import logger, {requestLogger} from './logger';
+
 import expressWinston from 'express-winston';
+import logger from './logger/root-logger';
+import requestLogger from './logger/request-logger';
 
 const server = express();
 server.use(cors());

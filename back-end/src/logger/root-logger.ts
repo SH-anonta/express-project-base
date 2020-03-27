@@ -2,8 +2,6 @@ import winston, {LoggerOptions} from 'winston';
 import rotatingFileTransport, {DailyRotateFileTransportOptions} from 'winston-daily-rotate-file';
 import {ConsoleTransportOptions} from 'winston/lib/winston/transports';
 
-import expressWinston  from 'express-winston';
-
 const commonOptions = {
   utc: true
 };
@@ -31,13 +29,5 @@ const logger = winston.createLogger({
     new winston.transports.Console(consoleLogOptions),
   ]
 });
-
-const requestLoggerOptions: LoggerOptions = {
-  defaultMeta: {
-    label: 'request'
-  }
-};
-
-export const requestLogger = logger.child(requestLoggerOptions);
 
 export default logger;

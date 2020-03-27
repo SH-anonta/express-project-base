@@ -14,11 +14,16 @@ import {getDbConnection} from './db-connection-provider';
 import {startServer} from './server';
 
 import config from 'config';
+import logger from './logger/root-logger';
 const webAppConfig = (config as any).webApp;
 
-getDbConnection().then(dbConnection => {
-  return startServer(webAppConfig.host, webAppConfig.port);
-});
+getDbConnection()
+  .then(dbConnection => {
+    return startServer(webAppConfig.host, webAppConfig.port);
+  })
+  .catch(err => {
+    logger.error(err);
+  });
 
 
 
