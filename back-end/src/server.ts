@@ -3,6 +3,7 @@ import cors from 'cors';
 import {getDbConnection} from './db-connection-provider';
 import {Connection} from 'typeorm';
 import {User} from './entity/user';
+import logger from './logger';
 
 const server = express();
 server.use(cors());
@@ -12,6 +13,7 @@ server.get('/', (req: any, res: any) => {
 });
 
 server.get('/names', (req: any, res: any) => {
+  logger.info('User names accessed');
   getDbConnection()
     .then((conn) => {
       return conn.manager
@@ -26,6 +28,6 @@ server.get('/names', (req: any, res: any) => {
 
 export function startServer(host: string, port: number) {
   server.listen(port, host, () => {
-    console.log(`Server started. host: ${host} port ${port}.`);
+    logger.info(`Server started. host: ${host} port ${port}.`);
   });
 }
