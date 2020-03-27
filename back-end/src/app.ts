@@ -10,13 +10,13 @@ import dotEnv from 'dotenv';
 dotEnv.config();
 process.env.NODE_CONFIG_DIR = path.join(__dirname, './config');
 
-import {createDbConnection} from './db-connection-factory';
+import {getDbConnection} from './db-connection-provider';
 import {startServer} from './server';
 
 import config from 'config';
 const webAppConfig = (config as any).webApp;
 
-createDbConnection().then(dbConnection => {
+getDbConnection().then(dbConnection => {
   return startServer(webAppConfig.host, webAppConfig.port);
 });
 
