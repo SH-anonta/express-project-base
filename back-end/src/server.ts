@@ -3,10 +3,15 @@ import cors from 'cors';
 import {getDbConnection} from './db-connection-provider';
 import {Connection} from 'typeorm';
 import {User} from './entity/user';
-import logger from './logger';
+import logger, {requestLogger} from './logger';
+import expressWinston from 'express-winston';
 
 const server = express();
 server.use(cors());
+
+server.use(expressWinston.logger({
+  winstonInstance: requestLogger,
+}));
 
 server.get('/', (req: any, res: any) => {
   res.send(`Hello world!!`);
