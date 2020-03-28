@@ -7,9 +7,14 @@ import {User} from './entity/user';
 import expressWinston from 'express-winston';
 import logger from './logger/root-logger';
 import requestLogger from './logger/request-logger';
+import path from 'path';
 
 const server = express();
 server.use(cors());
+
+const staticFilesDirPath = path.join(__dirname, '../static');
+console.log(staticFilesDirPath);
+server.use('/static', express.static(staticFilesDirPath));
 
 server.use(expressWinston.logger({
   winstonInstance: requestLogger,
