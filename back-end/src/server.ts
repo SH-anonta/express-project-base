@@ -9,9 +9,12 @@ import expressWinston from 'express-winston';
 import logger from './logger/root-logger';
 import requestLogger from './logger/request-logger';
 import path from 'path';
+import bodyParser from 'body-parser';
 
 const server = express();
 server.use(cors());
+server.use(bodyParser.urlencoded());
+server.use(bodyParser.json());
 
 const staticFilesDirPath = path.join(__dirname, '../static');
 server.use('/static', express.static(staticFilesDirPath));
@@ -20,7 +23,7 @@ server.use(expressWinston.logger({
   winstonInstance: requestLogger,
 }));
 
-server.use('/users', userRouter);
+server.use('/api/users', userRouter);
 
 server.get('/names', (req: any, res: any) => {
   logger.info('User names accessed');

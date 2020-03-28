@@ -21,8 +21,17 @@ router.get('/:userId',
     res.send(`User with Id: ${req.params.userId}, skip: ${req.query.email}`);
 });
 
-router.put('', (req, res) => {
+router.put('/',
+  validateRequest({
+    body: Joi.object({
+      userName: Joi.string().min(4).max(15),
+      email: Joi.string().email()
+    })
+  }),
+  (req, res) => {
+    console.log(req.body);
 
+    res.send(req.body);
 });
 
 router.post(':userId', (req, res) => {
