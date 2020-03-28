@@ -8,9 +8,9 @@ export function validateRequest(schemas: {body?: Joi.JoiObject, params?: Joi.Joi
   return (req: Request, res: Response, next: NextFunction) => {
 
     try {
-      genericSchemaValidation(req, res, 'params', schemas.params);
-      genericSchemaValidation(req, res, 'query', schemas.query);
-      genericSchemaValidation(req, res, 'body', schemas.body);
+      genericSchemaValidation(req, 'params', schemas.params);
+      genericSchemaValidation(req, 'query', schemas.query);
+      genericSchemaValidation(req, 'body', schemas.body);
     }
     catch (err) {
       res.status(400).send(err);
@@ -20,7 +20,11 @@ export function validateRequest(schemas: {body?: Joi.JoiObject, params?: Joi.Joi
   }
 }
 
-function genericSchemaValidation(req: Request, res: Response, propertyName: string, schema?: JoiObject) {
+function genericSchemaValidation(req: Request, propertyName: string, schema?: JoiObject) {
+  if (schema == null) {
+    return;
+  }
+
   const values: any = (req as any)[propertyName];
   const validationResult = Joi.validate(values, schema as JoiObject);
 
