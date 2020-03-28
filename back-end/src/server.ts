@@ -1,8 +1,7 @@
-import express from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import cors from 'cors';
-import {getDbConnection} from './db-connection-provider';
+import _ from 'lodash';
 
-import {User} from './entity/user';
 import userRouter from './areas/user/user.router';
 
 import expressWinston from 'express-winston';
@@ -12,12 +11,15 @@ import path from 'path';
 import bodyParser from 'body-parser';
 
 const server = express();
-server.use(cors());
-server.use(bodyParser.urlencoded());
-server.use(bodyParser.json());
 
 const staticFilesDirPath = path.join(__dirname, '../static');
 server.use('/static', express.static(staticFilesDirPath));
+
+server.use([
+  cors(),
+  bodyParser.urlencoded(),
+  bodyParser.json()
+]);
 
 server.use(expressWinston.logger({
   winstonInstance: requestLogger,
@@ -25,22 +27,16 @@ server.use(expressWinston.logger({
 
 server.use('/api/users', userRouter);
 
-server.get('/names', (req: any, res: any) => {
-  logger.info('User names accessed');
-  getDbConnection()
-    .then((conn) => {
-      return conn.manager
-        .getRepository(User)
-        .find()
-        .then(x => x.map(e => e.firstName));
-    })
-    .then(userNames => {
-      res.send(userNames);
-    });
+// Global error handler
+server.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  const errorMsg = _.get(err, 'stack') || err;
+    logger.error(errorMsg);
+  res.status(500).send('Internal Server Error.')
 });
 
 export function startServer(host: string, port: number) {
   server.listen(port, host, () => {
+    // tslint:disable-next-line:no-console
     console.log(`Server started. host: ${host} port ${port}.`);
     logger.info(`Server started. host: ${host} port ${port}.`);
   });

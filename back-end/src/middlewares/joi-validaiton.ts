@@ -14,6 +14,7 @@ export function validateRequest(schemas: {body?: Joi.JoiObject, params?: Joi.Joi
     }
     catch (err) {
       res.status(400).send(err);
+      return;
     }
 
     next();
