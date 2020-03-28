@@ -27,6 +27,7 @@
     "moment": "^2.24.0",
     "pg": "^7.18.2",
     "reflect-metadata": "^0.1.13",
+    "typedi": "^0.8.0",
     "typeorm": "^0.2.24",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.4.2"

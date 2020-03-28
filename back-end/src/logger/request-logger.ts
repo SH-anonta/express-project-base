@@ -3,7 +3,7 @@ import logger from './root-logger';
 
 const requestLoggerOptions: LoggerOptions = {
   defaultMeta: {
-    label: 'request'
+    source: 'request'
   }
 };
 
