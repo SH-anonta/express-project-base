@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {UserAccountService} from '../../../../services/user-accout.service';
+import {ToastrService} from 'ngx-toastr';
+import {UserAccount} from '../../../../models/user-account.model';
 
 @Component({
   selector: 'app-user-list',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
+  private users: UserAccount[] = [];
 
-  constructor() { }
+  constructor(private userAccountService: UserAccountService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.userAccountService.getUsers().subscribe(
+      resp => {
+        this.users = resp;
+      },
+      error => {
+        this.toastr.error('Failed to retrieve users');
+      }
+    );
   }
 
 }
