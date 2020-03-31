@@ -6,7 +6,7 @@ import logger from './logger/root-logger';
 const connectionOptions: ConnectionOptions = {
   database: 'Driver',
   type: 'postgres',
-  host: 'localhost',
+  host: 'maindb',
   port: 5432,
   username: 'postgres',
   password: '123',
@@ -15,8 +15,17 @@ const connectionOptions: ConnectionOptions = {
     'src/entity/**/*.ts'
   ],
 
+  // TODO use migration run instead of synchronize
+  synchronize: true,
+  migrationsRun: false,
+  migrationsTableName: '_migration',
+  migrationsTransactionMode: 'all',
+  migrations: [
+    './src/migrations'
+  ],
+
   logging: true,
-  logger: new TypeOrmCustomLogger()
+  logger: new TypeOrmCustomLogger(),
 };
 
 let connection$: Promise<Connection | void> | null = null;
