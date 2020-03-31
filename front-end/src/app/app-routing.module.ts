@@ -11,10 +11,13 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'users',
+    loadChildren: () => import('./areas/user/user.module').then(module => module.UserModule)
+  },
+  {
     path: '**',
     component: NotFoundPageComponent,
   }
-
 ];
 
 @NgModule({
