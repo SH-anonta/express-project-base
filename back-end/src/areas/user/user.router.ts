@@ -1,9 +1,10 @@
 import {Router} from 'express';
 import Joi from 'joi';
-import {validateRequest} from '../../middlewares/joi-validaiton';
+import {createValidator} from 'express-joi-validation';
 import {UserService} from './user.service';
 import {User} from '../../entity/user';
 
+const validator = createValidator();
 const userService = new UserService();
 
 const userIdParamSchema = Joi.object({
@@ -29,9 +30,7 @@ router.get('', (req, res, next) => {
 });
 
 router.get('/:userId',
-  validateRequest({
-    params: userIdParamSchema,
-  }),
+  validator.params(userIdParamSchema),
   (req, res, next) => {
     userService.getUser(+req.params.userId)
       .then(user => {
@@ -49,9 +48,7 @@ router.get('/:userId',
 );
 
 router.put('/',
-  validateRequest({
-    body: userPayloadSchema
-  }),
+  validator.body(userPayloadSchema),
   (req, res, next) => {
     userService.createUser(req.body)
       .then(createdUser => {
@@ -63,9 +60,8 @@ router.put('/',
 });
 
 router.post('/:userId',
-  validateRequest({
-    params: userIdParamSchema,
-  }),
+  validator.params(userIdParamSchema),
+  validator.body(userPayloadSchema),
   (req, res, next) => {
     const userId = +req.params.userId;
 
@@ -80,9 +76,7 @@ router.post('/:userId',
 });
 
 router.delete('/:userId',
-  validateRequest({
-    params: userIdParamSchema,
-  }),
+  validator.params(userIdParamSchema),
   (req, res, next) => {
     userService.removeUser(+req.params.userId)
     .then(user => {
