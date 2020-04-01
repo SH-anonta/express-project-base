@@ -9,10 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
 
-
 @NgModule({
   declarations: [
-    NavigationComponent,
+    NavigationComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +23,7 @@ import { MatListModule } from '@angular/material/list';
     MatListModule,
   ],
   exports: [
-    NavigationComponent,
+    NavigationComponent
   ]
 })
 export class LayoutComponentsModule { }

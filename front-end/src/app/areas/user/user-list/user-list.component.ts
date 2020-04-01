@@ -9,7 +9,7 @@ import {UserAccount} from '../../../../models/user-account.model';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  private users: UserAccount[] = [];
+  users: UserAccount[] = [];
 
   constructor(private userAccountService: UserAccountService,
               private toastr: ToastrService) { }
