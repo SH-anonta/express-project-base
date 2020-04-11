@@ -6,7 +6,7 @@ import logger from './logger/root-logger';
 const connectionOptions: ConnectionOptions = {
   database: 'Driver',
   type: 'postgres',
-  host: 'maindb',
+  host: 'localhost',
   port: 5432,
   username: 'postgres',
   password: '123',

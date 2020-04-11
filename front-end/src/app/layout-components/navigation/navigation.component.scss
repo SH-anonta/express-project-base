@@ -15,3 +15,7 @@
   top: 0;
   z-index: 1;
 }
+
+.selected-nav-link {
+  background-color: lighten(lightgrey, 10);
+}
