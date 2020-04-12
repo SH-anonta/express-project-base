@@ -8,6 +8,12 @@ export class User {
   @Column()
   userName: string;
 
+  @Column({
+    type: 'date',
+    nullable: true
+  })
+  dob?: Date;
+
   @Column()
   email: string;
 }
